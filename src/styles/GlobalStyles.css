@@ -1,0 +1,63 @@
+:root {
+  --bg-black: #050505;
+  --neon-red: #ff0000;
+  --dark-red: #8b0000;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-black);
+  /* بجلی جیسی لکیروں کا بیک گراؤنڈ ایفیکٹ */
+  background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                    url('/assets/lightning-bg.png');
+  background-size: cover;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 15px;
+}
+
+.neon-border {
+  border: 2px solid var(--neon-red);
+  box-shadow: 0 0 10px var(--neon-red), inset 0 0 5px var(--neon-red);
+  border-radius: 12px;
+  background: rgba(20, 0, 0, 0.6);
+}
+
+.ride-btn {
+  background: var(--neon-red);
+  color: white;
+  font-weight: bold;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 0 20px var(--neon-red);
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.map-wrapper {
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 20px;
+  border: 1px solid var(--dark-red);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 2px solid var(--neon-red);
+}
