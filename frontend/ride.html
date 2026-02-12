@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlinGo Ride</title>
+    <link rel="stylesheet" href="css/ride.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+</head>
+<body>
+    <header>
+        <img src="assets/images/log.JPG" alt="AlinGo Logo" class="logo">
+        <h1>Ride Booking</h1>
+    </header>
+
+    <main>
+        <div id="map" class="map"></div>
+
+        <div class="ride-controls">
+            <input type="text" id="pickup" placeholder="Pickup Location">
+            <input type="text" id="drop" placeholder="Drop Location">
+            <button id="bookRide">Book Ride</button>
+        </div>
+    </main>
+
+    <script src="js/ride.js"></script>
+</body>
+</html>
