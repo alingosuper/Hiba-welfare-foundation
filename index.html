@@ -3,93 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiba Welfare Foundation</title>
+    <title>Hiba Welfare Foundation | خدمتِ انسانیت</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="bg-gray-50 text-gray-800">
 
-    <div id="overlay" class="fixed inset-0 bg-black/50 hidden z-40 transition-opacity"></div>
-
-    <aside id="sidebar" class="fixed inset-y-0 right-0 w-72 bg-gradient-to-b from-blue-900 to-blue-700 text-white transform translate-x-full transition-transform duration-300 ease-in-out z-50 shadow-2xl">
-        <div class="p-6">
-            <div class="flex justify-between items-center border-b border-white/20 pb-4">
-                <h2 class="text-2xl font-bold">مینیو</h2>
-                <button onclick="toggleSidebar()" class="text-2xl">&times;</button>
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 p-2 rounded-xl text-white shadow-lg">
+                    <i class="fas fa-hand-holding-heart text-2xl"></i>
+                </div>
+                <span class="text-xl font-black text-blue-900 tracking-tight" id="siteLogo">HIBA FOUNDATION</span>
             </div>
-            <nav class="mt-8 space-y-2">
-                <a href="javascript:void(0)" onclick="showSection('home')" class="nav-item"><i class="fas fa-home"></i> ہوم پیج</a>
-                <a href="javascript:void(0)" onclick="showSection('weather')" class="nav-item"><i class="fas fa-cloud-sun"></i> موسم کی صورتحال</a>
-                <a href="javascript:void(0)" onclick="showSection('donations')" class="nav-item"><i class="fas fa-hand-holding-heart"></i> عطیات کا ریکارڈ</a>
-                <a href="javascript:void(0)" onclick="showSection('gallery')" class="nav-item"><i class="fas fa-images"></i> تصویری گیلری</a>
-                <a href="javascript:void(0)" onclick="showSection('beneficiaries')" class="nav-item"><i class="fas fa-users"></i> مستحقین کی فہرست</a>
-                <a href="javascript:void(0)" onclick="showSection('events')" class="nav-item"><i class="fas fa-calendar-check"></i> پروگرامز (Events)</a>
-            </nav>
-        </div>
-    </aside>
+            
+            <ul class="hidden md:flex gap-8 font-bold text-gray-600 uppercase text-sm">
+                <li><a href="#" onclick="showSection('home')" class="hover:text-blue-600 transition">ہوم</a></li>
+                <li><a href="#" onclick="showSection('weather')" class="hover:text-blue-600 transition">موسم</a></li>
+                <li><a href="#" onclick="showSection('donations')" class="hover:text-blue-600 transition">عطیات</a></li>
+                <li><a href="#" onclick="showSection('gallery')" class="hover:text-blue-600 transition">گیلری</a></li>
+            </ul>
 
-    <header class="p-4 flex justify-between items-center bg-white shadow-sm sticky top-0 z-30">
-        <div id="siteLogo" class="text-xl font-bold text-blue-800 flex items-center gap-2">
-            <i class="fas fa-hand-holding-medical"></i> Hiba Foundation
+            <button id="mobileMenuBtn" class="md:hidden text-2xl text-blue-900">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        <button onclick="toggleSidebar()" class="bg-blue-600 text-white p-2 rounded-lg shadow-lg">
-            <i class="fas fa-bars"></i>
-        </button>
-    </header>
-
-    <main id="content" class="p-4 md:p-8 max-w-5xl mx-auto">
         
-        <section id="home" class="active-section space-y-6">
-            <div class="hero-card bg-white p-8 rounded-[2rem] shadow-xl border-t-[10px] border-blue-600 text-center animate-fade-in">
-                <h1 id="displayTitle" class="text-4xl font-black text-blue-900 mb-2">Hiba Welfare Foundation</h1>
-                <p class="text-gray-500 italic">انسانیت کی خدمت ہمارا عزم۔</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
-                    <div class="bg-blue-50 p-6 rounded-3xl border border-blue-100">
-                        <span class="text-blue-600 text-sm font-bold uppercase tracking-wider">کل مستحقین</span>
-                        <h3 class="text-4xl font-black text-slate-800 mt-1">+1,250</h3>
-                    </div>
-                    <div class="bg-green-50 p-6 rounded-3xl border border-green-100">
-                        <span class="text-green-600 text-sm font-bold uppercase tracking-wider">حالیہ ایونٹس</span>
-                        <h3 class="text-4xl font-black text-slate-800 mt-1">12</h3>
+        <div id="mobileMenu" class="hidden bg-white border-t p-4 space-y-4 md:hidden animate-fade-in">
+            <a href="#" onclick="showSection('home')" class="block font-bold">ہوم</a>
+            <a href="#" onclick="showSection('weather')" class="block font-bold">موسم</a>
+            <a href="#" onclick="showSection('donations')" class="block font-bold">عطیات</a>
+            <a href="#" onclick="showSection('gallery')" class="block font-bold">گیلری</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4 md:p-10">
+        
+        <section id="home" class="section-active">
+            <div class="relative overflow-hidden bg-gradient-to-br from-blue-900 to-blue-600 rounded-[2.5rem] p-8 md:p-20 text-white shadow-2xl">
+                <div class="relative z-10 max-w-2xl">
+                    <h1 id="displayTitle" class="text-4xl md:text-6xl font-black mb-6 leading-tight">انسانیت کی خدمت، ہمارا مشن</h1>
+                    <p class="text-blue-100 text-lg mb-8 opacity-90">ہم مل کر غریبوں اور مستحقین کی زندگیوں میں خوشحالی لا سکتے ہیں۔</p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="showSection('donations')" class="bg-white text-blue-900 px-8 py-4 rounded-2xl font-black shadow-xl hover:scale-105 transition">ابھی عطیہ دیں</button>
+                        <button class="bg-blue-500/30 backdrop-blur-md border border-white/20 px-8 py-4 rounded-2xl font-bold">ہمارے بارے میں</button>
                     </div>
                 </div>
             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 text-center">
+                    <i class="fas fa-users text-4xl text-blue-500 mb-4"></i>
+                    <h3 class="text-3xl font-black text-gray-900">1,250+</h3>
+                    <p class="text-gray-500 font-bold uppercase text-xs tracking-widest mt-2">کل مستحقین</p>
+                </div>
+                </div>
         </section>
 
-        <section id="weather" class="hidden space-y-4">
-            <div class="bg-white p-6 rounded-3xl shadow-lg border-b-4 border-yellow-400">
-                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-700">
+        <section id="weather" class="hidden">
+            <div class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100 max-w-2xl mx-auto">
+                <h2 class="text-3xl font-black text-blue-900 mb-8 flex items-center gap-3">
                     <i class="fas fa-cloud-sun text-yellow-500"></i> عالمی موسم
                 </h2>
-                <div class="flex gap-2">
-                    <input type="text" id="cityInput" placeholder="اپنے شہر کا نام لکھیں..." class="w-full p-4 rounded-2xl bg-slate-100 border-none focus:ring-2 focus:ring-blue-500 outline-none">
-                    <button onclick="getWeather()" class="bg-blue-600 text-white px-6 rounded-2xl font-bold">تلاش</button>
+                <div class="relative">
+                    <input type="text" id="cityInput" placeholder="اپنے شہر کا نام..." class="w-full p-5 rounded-2xl bg-gray-100 border-none focus:ring-4 focus:ring-blue-100 outline-none text-lg">
+                    <button onclick="getWeather()" class="absolute left-2 top-2 bottom-2 bg-blue-600 text-white px-8 rounded-xl font-bold">تلاش</button>
                 </div>
-                <div id="weatherDisplay" class="mt-6 hidden bg-gradient-to-r from-blue-500 to-blue-400 p-8 rounded-3xl text-white text-center">
-                    </div>
+                <div id="weatherResult" class="mt-10 hidden"></div>
             </div>
         </section>
 
-        <section id="admin-panel" class="hidden animate-fade-in">
-            <div class="bg-slate-900 text-white p-8 rounded-[2rem] shadow-2xl">
-                <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-4 tracking-tighter italic text-red-400">ADMIN CONTROL CENTER</h2>
+        <section id="admin-panel" class="hidden">
+            <div class="bg-gray-900 text-white p-8 rounded-[2.5rem] shadow-2xl overflow-hidden relative">
+                <div class="absolute top-0 right-0 p-10 opacity-10 text-9xl italic font-black">ADMIN</div>
+                <h2 class="text-3xl font-black mb-10 text-red-500 tracking-tighter italic">CONTROL CENTER</h2>
                 
-                <div class="space-y-6">
-                    <div>
-                        <label class="block mb-2 text-sm font-medium">سائٹ کا ٹائٹل تبدیل کریں</label>
-                        <input type="text" id="updateTitleInput" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-blue-500">
+                <div class="grid md:grid-cols-2 gap-10 relative z-10">
+                    <div class="space-y-6">
+                        <h4 class="text-lg font-bold border-b border-white/10 pb-2">ویب سائٹ کنٹرول</h4>
+                        <input type="text" id="updateTitleInput" placeholder="نیا ٹائٹل" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500">
+                        <button onclick="applySettings()" class="w-full bg-blue-600 p-4 rounded-2xl font-black shadow-lg">سیٹنگز اپڈیٹ کریں</button>
                     </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <button onclick="applySettings()" class="bg-blue-600 p-4 rounded-xl font-bold hover:bg-blue-500 transition shadow-lg">سیٹنگز محفوظ کریں</button>
-                        <button class="bg-slate-700 p-4 rounded-xl font-bold hover:bg-slate-600 transition">ڈارک موڈ</button>
-                    </div>
-
-                    <div class="bg-slate-800 p-6 rounded-2xl border border-dashed border-slate-600">
-                        <label class="block mb-4 font-bold"><i class="fas fa-file-upload mr-2"></i> فائل اپلوڈ (PNG, PDF, DOCX)</label>
-                        <input type="file" id="adminFile" class="block w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-500">
-                        <p class="text-xs mt-3 text-slate-500 italic">* فائلیں براہ راست گٹ ہب ریپوزٹری میں جائیں گی۔</p>
+                    
+                    <div class="space-y-6">
+                        <h4 class="text-lg font-bold border-b border-white/10 pb-2">فائل مینجمنٹ (PNG/PDF)</h4>
+                        <div class="border-2 border-dashed border-white/20 p-8 rounded-3xl text-center">
+                            <input type="file" id="adminFile" class="hidden">
+                            <label for="adminFile" class="cursor-pointer bg-white/10 px-6 py-3 rounded-xl hover:bg-white/20 transition inline-block mb-4">فائل منتخب کریں</label>
+                            <p class="text-sm text-gray-400">تمام اپلوڈز گٹ ہب پر محفوظ ہوں گے۔</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,8 +101,9 @@
 
     </main>
 
-    <footer class="mt-10 mb-6 flex justify-center opacity-30 hover:opacity-100 transition">
-        <div onclick="promptAdmin()" class="w-2 h-2 bg-red-600 rounded-full cursor-pointer shadow-[0_0_10px_rgba(220,38,38,0.5)]"></div>
+    <footer class="py-10 flex flex-col items-center gap-4 opacity-40 hover:opacity-100 transition">
+        <p class="text-xs font-bold text-gray-400">&copy; 2026 Hiba Welfare Foundation</p>
+        <div onclick="promptAdmin()" class="w-2 h-2 bg-red-600 rounded-full cursor-pointer"></div>
     </footer>
 
     <script src="scripts.js"></script>
