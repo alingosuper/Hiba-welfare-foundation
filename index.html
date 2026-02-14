@@ -1,49 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hiba Welfare Foundation</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --main-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: all 0.3s ease; }
+        .sidebar { transition: transform 0.3s ease; z-index: 50; }
+        .hidden-section { display: none; }
+        .gradient-bg { background: var(--main-gradient); }
+        .admin-dot { width: 8px; height: 8px; background: #ff4d4d; border-radius: 50%; cursor: pointer; opacity: 0.2; }
+    </style>
 </head>
-<body>
-    <div id="sidebar">
-        <h2>Menu</h2>
-        <ul>
-            <li><a href="#admin">Admin Panel</a></li>
-            <li><a href="#weather">Weather</a></li>
-            <li><a href="#donations">Donations</a></li>
-            <li><a href="#beneficiaries">Beneficiaries</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-        </ul>
+<body class="bg-gray-100">
+
+    <button id="menuBtn" class="fixed top-4 right-4 z-50 bg-blue-600 text-white p-2 rounded-lg lg:hidden">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="flex min-h-screen">
+        <div id="sidebar" class="sidebar fixed inset-y-0 right-0 w-64 gradient-bg text-white transform translate-x-full lg:translate-x-0 lg:static">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold border-b pb-4">مینیو</h2>
+                <ul class="mt-6 space-y-4">
+                    <li><a href="#" onclick="showSection('home')" class="flex items-center gap-2 hover:bg-white/10 p-2 rounded"><i class="fas fa-home"></i> ہوم پیج</a></li>
+                    <li><a href="#" onclick="showSection('weather')" class="flex items-center gap-2 hover:bg-white/10 p-2 rounded"><i class="fas fa-cloud-sun"></i> موسم</a></li>
+                    <li><a href="#" onclick="showSection('donations')" class="flex items-center gap-2 hover:bg-white/10 p-2 rounded"><i class="fas fa-hand-holding-heart"></i> عطیات</a></li>
+                    <li><a href="#" onclick="showSection('gallery')" class="flex items-center gap-2 hover:bg-white/10 p-2 rounded"><i class="fas fa-images"></i> گیلری</a></li>
+                    <li><a href="#" onclick="showSection('contact')" class="flex items-center gap-2 hover:bg-white/10 p-2 rounded"><i class="fas fa-envelope"></i> رابطہ کریں</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flex-1 p-4 lg:p-8 overflow-y-auto">
+            
+            <section id="home" class="section">
+                <div class="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-blue-600">
+                    <h1 id="siteTitle" class="text-4xl font-black text-blue-800">Hiba Welfare Foundation</h1>
+                    <p class="mt-4 text-gray-600 text-lg">انسانیت کی خدمت ہمارا عزم۔</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                        <div class="bg-blue-50 p-6 rounded-2xl">
+                            <h3 class="font-bold text-blue-700">کل مستحقین</h3>
+                            <p class="text-3xl font-bold">1,250+</p>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-2xl">
+                            <h3 class="font-bold text-green-700">حالیہ ایونٹس</h3>
+                            <p class="text-3xl font-bold">12</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="weather" class="section hidden-section mt-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h2 class="text-2xl font-bold mb-4"><i class="fas fa-sun text-yellow-500"></i> عالمی موسم</h2>
+                    <div class="flex gap-2 mb-4">
+                        <input type="text" id="cityInput" placeholder="شہر کا نام..." class="border p-2 rounded flex-1">
+                        <button onclick="fetchWeather()" class="bg-blue-600 text-white px-4 py-2 rounded">چیک کریں</button>
+                    </div>
+                    <div id="weatherResult" class="text-center p-4 bg-blue-50 rounded-xl hidden">
+                        <h3 id="cityName" class="text-xl font-bold"></h3>
+                        <p id="temp" class="text-4xl font-bold my-2"></p>
+                        <p id="desc" class="capitalize"></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="admin-login" class="section hidden-section mt-6">
+                <div class="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-2xl">
+                    <h2 class="text-2xl font-bold text-center mb-6">ایڈمن لاگ ان</h2>
+                    <input type="password" id="adminPass" placeholder="پاس ورڈ درج کریں" class="w-full border p-3 rounded-lg mb-4">
+                    <button onclick="checkAdmin()" class="w-full bg-red-600 text-white py-3 rounded-lg font-bold">داخل ہوں</button>
+                </div>
+            </section>
+
+            <section id="admin-dashboard" class="section hidden-section mt-6">
+                <div class="bg-gray-800 text-white p-6 rounded-2xl shadow-xl">
+                    <h2 class="text-2xl font-bold mb-4">ایڈمن کنٹرول پینل</h2>
+                    <div class="grid grid-cols-1 gap-4">
+                        <label>سائٹ کا ٹائٹل بدلیں:</label>
+                        <input type="text" id="newTitle" class="text-black p-2 rounded" placeholder="نیا ٹائٹل">
+                        <button onclick="updateSettings()" class="bg-green-600 py-2 rounded">اپڈیٹ کریں</button>
+                        <hr class="my-4 opacity-20">
+                        <label>فائل اپلوڈ (PNG/PDF):</label>
+                        <input type="file" id="fileUpload" class="bg-white/10 p-2 rounded">
+                    </div>
+                </div>
+            </section>
+
+        </div>
     </div>
-    <div id="main-content">
-        <section id="admin">
-            <h2>Admin Panel</h2>
-            <p>Admin functionality goes here...</p>
-        </section>
-        <section id="weather">
-            <h2>Weather Information</h2>
-            <p>Weather API content goes here...</p>
-        </section>
-        <section id="donations">
-            <h2>Donations</h2>
-            <p>Donation options...</p>
-        </section>
-        <section id="beneficiaries">
-            <h2>Beneficiaries</h2>
-            <p>List of beneficiaries...</p>
-        </section>
-        <section id="events">
-            <h2>Events</h2>
-            <p>Upcoming events...</p>
-        </section>
-        <section id="gallery">
-            <h2>Gallery</h2>
-            <p>Gallery of images...</p>
-        </section>
-    </div>
-    <script src="scripts.js"></script>
+
+    <footer class="p-4 flex justify-center items-center">
+        <div class="admin-dot" onclick="showSection('admin-login')" title="Admin Only"></div>
+    </footer>
+
+    <script>
+        // مینیو کنٹرول
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        menuBtn.onclick = () => sidebar.classList.toggle('translate-x-full');
+
+        // سیکشن سوئچنگ
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.add('hidden-section'));
+            document.getElementById(id).classList.remove('hidden-section');
+            if(window.innerWidth < 1024) sidebar.classList.add('translate-x-full');
+        }
+
+        // ایڈمن لاگ ان
+        function checkAdmin() {
+            const pass = document.getElementById('adminPass').value;
+            if (pass === 'admin123') {
+                showSection('admin-dashboard');
+            } else {
+                alert('غلط پاس ورڈ!');
+            }
+        }
+
+        // سائٹ اپڈیٹ
+        function updateSettings() {
+            const title = document.getElementById('newTitle').value;
+            if(title) {
+                document.getElementById('siteTitle').innerText = title;
+                alert('سیٹنگز محفوظ ہو گئیں!');
+            }
+        }
+
+        // ویدر فنکشن (Sample API call)
+        async function fetchWeather() {
+            const city = document.getElementById('cityInput').value;
+            const res = document.getElementById('weatherResult');
+            // نوٹ: یہاں اصل API Key کی ضرورت ہوگی
+            // فی الحال میں فرضی ڈیٹا دکھا رہا ہوں
+            res.classList.remove('hidden');
+            document.getElementById('cityName').innerText = city;
+            document.getElementById('temp').innerText = "24°C";
+            document.getElementById('desc').innerText = "صاف موسم";
+        }
+    </script>
 </body>
 </html>
