@@ -1,0 +1,30 @@
+backend:
+  name: github
+  repo: آپ_کا_یوزر_نیم/ریپوزٹری_کا_نام # یہاں اپنا نام لکھیں
+  branch: main
+
+media_folder: "assets/uploads" # تمام تصاویر اور فائلیں یہاں جائیں گی
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "settings"
+    label: "سائٹ کی سیٹنگز"
+    files:
+      - file: "_data/settings.json"
+        label: "جنرل سیٹنگز"
+        name: "general"
+        fields:
+          - {label: "سائٹ کا عنوان", name: "site_title", widget: "string"}
+          - {label: "لوگو", name: "logo", widget: "image"}
+          - {label: "بیک گراؤنڈ کلر (Gradient)", name: "bg_color", widget: "string", default: "linear-gradient(to right, #11998e, #38ef7d)"}
+          - {label: "ایڈمن پاس ورڈ", name: "admin_pass", widget: "string"}
+
+  - name: "services"
+    label: "خدمات (Services)"
+    folder: "_services"
+    create: true
+    fields:
+      - {label: "عنوان", name: "title", widget: "string"}
+      - {label: "تفصیل", name: "description", widget: "text"}
+      - {label: "فائل اپلوڈ (PDF/Docx)", name: "document", widget: "file", required: false}
+      - {label: "حالت (Show/Hide)", name: "status", widget: "boolean", default: true}
